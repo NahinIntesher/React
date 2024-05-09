@@ -1,0 +1,9 @@
+.hello{
+    font-size: 100px;
+    font-weight: bold;
+    background-color: bisque;
+    border-radius: 20px;
+    padding: 20px;
+    margin: 20px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+}

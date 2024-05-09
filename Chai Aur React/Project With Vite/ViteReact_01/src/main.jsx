@@ -4,5 +4,6 @@ import App from './App.jsx'
 root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
-    <App />
+    
+    <App/>
 )

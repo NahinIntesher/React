@@ -1,13 +1,13 @@
 import React from "react";
 
-function Box(object){
+function Box(props) {    
     return(
-        <div className="hello"
-            style = {{backgroundColor: object.color}}>
-            {object.name}
+        <div className="hello" style={{backgroundColor: props.color}}>
+            {props.name} 
             <br/>
-            {object.title}
+            {props.code}
         </div>
-    )
+    )   
 }
+
 export default Box;

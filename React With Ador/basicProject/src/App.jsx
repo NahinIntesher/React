@@ -38,3 +38,4 @@ export default function App(obj) {
   //   </>
   // );
 }
+const functionalComponent = () => <>hi</>;

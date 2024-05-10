@@ -8,3 +8,8 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   // <App />
   <JSX />
 );
+/*
+There is two types of components
+one is class based which is statefull
+and another is functional based which is stateless
+*/

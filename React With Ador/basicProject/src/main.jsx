@@ -16,5 +16,5 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   //     ["Github", "https://github.com/Assassin318554"],
   //   ]}
   // />
-  <Index />
+  <InputComponent />
 );

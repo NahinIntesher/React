@@ -10,7 +10,8 @@ const items = [
   { code: 2203, name: "DLD", color: "green" },
 ];
 export default function App(obj) {
-  return (
+  return ( 
+    
     <div>
       {items.map(function (el) {
         return (

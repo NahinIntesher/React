@@ -10,16 +10,27 @@ body{
     align-items: center;
     justify-content: center;
 }
+input{
+    width: 20vmax;
+    font-family: Times New Roman;
+    font-size: 3vmin;
+    padding: 0.4rem;
 
+}
+.nahin td {
+    font-family: Cascadia Code;
+    font-size: 3vmin;
+    padding: 0.4rem;
+}
 button{
     font-family: Times New Roman;
-    font-size: large;
+    font-size: 1.3rem;
     background: beige;
     border: 2px solid black;
     border-radius: 10px;
-    height: 5vmax;
+    height: 4vmax;
     width: 20vmax;
-    padding: 10px 20px;
+    padding: 1vmax 1vmax;   
     cursor: pointer;
     transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
 }

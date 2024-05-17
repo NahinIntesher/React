@@ -27,58 +27,94 @@ const InputComponent = () => {
     setSocialMediaLinksInput(event.target.value);
   };
 
-
-  
-
+  // const clicked = onclick(#submit);
   // Event handler for form submission
   const handleSubmit = (event) => {
     event.preventDefault();
-    // Handle form submission logic here
-    console.log("Form submitted with values:", NameInput, BioInput, SkillsInput, SocialMediaLinksInput);
   };
 
   return (
     <form onSubmit={handleSubmit}>
+      <div
+        className="Container"
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          height: "50vmin",
+          width: "50vmax",
+          background: "#9fd3c7",
+          color: "#233142",
+          borderRadius: "20px",
+          boxShadow: "5px 5px 10px rgba(0, 0, 0, 0.5)",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "space-evenly",
+          border: "2px solid black",
+        }}
+      >
+        <table
+          className="nahin"
+          style={{
+            height: "20vmin",
+            width: "40vmax",
+          }}
+        >
+          <tr>
+            <td>Input your name: </td>
+            <td>
+              <input
+                type="text"
+                value={NameInput}
+                onChange={handleTextInputChange}
+              />
+            </td>
+          </tr>
 
-      <div style={{display:"flex", flexDirection: "column"}}>
+          <tr>
+            <td>Bio about yourself: </td>
+            <td>
+              <input
+                type="text"
+                value={BioInput}
+                onChange={handleBioInputChange}
+              />
+            </td>
+          </tr>
 
-        <div>
-          <label style={{display:"flex", justifyContent: 'space-between'}}>
-            Name Input:
-            <input type="text" value={NameInput} onChange={handleTextInputChange} />
-          </label>
-        </div>
+          <tr>
+            <td>Skills of yourself: </td>
+            <td>
+              <input
+                type="skills"
+                value={SkillsInput}
+                onChange={handleSkillsInputChange}
+              />
+            </td>
+          </tr>
 
+          <tr>
+            <td>Links of social media:</td>
+            <td>
+              <input
+                type="links"
+                value={SocialMediaLinksInput}
+                onChange={handleSocialMediaLinksInputChange}
+              />
+            </td>
+          </tr>
+        </table>
 
-        <div>
-        <label style={{display:"flex", justifyContent: 'space-between'}}>
-            Give some bio about yourself:
-            <input type="text" value={BioInput} onChange={handleBioInputChange} />
-          </label>
-        </div>
-
-
-        <div>
-        <label style={{display:"flex", justifyContent: 'space-between'}}>
-          Give some skills of yourself:
-            <input type="skills" value={SkillsInput} onChange={handleSkillsInputChange} />
-          </label>
-        </div>
-
-      
-        <div>
-        <label style={{display:"flex", justifyContent: 'space-between'}}>
-            Links of social media:
-            <input type="links" value={SocialMediaLinksInput} onChange={handleSocialMediaLinksInputChange} />
-          </label>
-        </div>
-
-        <button type="submit">Submit</button>
-
-
+        <button type="submit" onClick={
+          () => {
+            console.log(NameInput);
+            console.log(BioInput);
+            console.log(SkillsInput);
+            console.log(SocialMediaLinksInput);
+          }
+        
+        }>Submit</button>
       </div>
-
-
     </form>
   );
 };

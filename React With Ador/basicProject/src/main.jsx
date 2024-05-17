@@ -1,9 +1,10 @@
 import React from "react";
-import ReactDOM from "react-dom/client";
+import App from "./App";
 import "./style.css";
-import Profile from "./Components/Profile/Profile.jsx";
-import InputComponent from "./Components/Profile/InputComponent.jsx";
-import Index from "./Components/Profile/Index.jsx";
+import ReactDOM from "react-dom";
+import InputComponent from "./Components/Profile/InputComponent";
+import Index from "./Components/Profile/Index";
+
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   // <Profile
@@ -16,5 +17,6 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   //     ["Github", "https://github.com/Assassin318554"],
   //   ]}
   // />
-  <InputComponent />
+  <App />
+  // <App key={true} />
 );

@@ -1,4 +1,5 @@
 import React from "react";
+import InputComponent from "./InputComponent";
 const Index = (obj) => {
   return (
     <div
@@ -25,7 +26,7 @@ const Index = (obj) => {
         }}
       >
         <button id="addYourself"
-          
+          // onClick={this.state(<InputComponent/>)}
         >
           Add yourself
         </button>

@@ -1,12 +1,12 @@
 import React from "react";
 
-function Logged(nahin) {    
-    return(
-        <div>
-            Welcome user!<br/>
-            <input type="button" value="Logout"></input>
-        </div>
-    )   
+function Logged(nahin) {
+  return (
+    <div>
+      Welcome user!
+      <br />
+    </div>
+  );
 }
 
 export default Logged;

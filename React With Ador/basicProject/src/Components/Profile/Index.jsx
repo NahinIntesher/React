@@ -18,24 +18,6 @@ const Index = (obj) => {
       }}
     >
       <h1 style={{ fontFamily: "Times New Roman" }}>Profile Information</h1>
-      <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-around",
-        }}
-      >
-        <button id="addYourself"
-          // onClick={this.state(<InputComponent/>)}
-        >
-          Add yourself
-        </button>
-        <button id="seeProfile"
-          
-        >
-          See someones profile
-        </button>
-      </div>
     </div>
   );
 };

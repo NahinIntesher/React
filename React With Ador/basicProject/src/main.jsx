@@ -1,13 +1,8 @@
 import React from "react";
-import App from "./App";
+import ReactDOM from "react-dom/client";
 import "./style.css";
-import ReactDOM from "react-dom";
-import InputComponent from "./Components/Profile/InputComponent";
-import Index from "./Components/Profile/Index";
-import SetState from "./Components/SetState";
-import TowWayDataBinding from "./Components/TwoWayDataBinding";
-
+import SimpleTimer from "./Components/SetState";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <TowWayDataBinding />
+  <SimpleTimer />
 );

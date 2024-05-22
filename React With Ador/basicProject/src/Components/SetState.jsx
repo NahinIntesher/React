@@ -1,78 +1,64 @@
 import React from "react";
 
-class SetState extends React.Component {
-  state = {
-    count: 0,
+function SetState() {
+  let [count, setCount] = React.useState(0);
+  let [interval, setCurrInterval] = React.useState(null);
+  const incrementCount = () => {
+    setCount((prevCount) => prevCount + 1);
   };
-  intervalId = null;
-  incrementCount = () => {
-    this.setState((prev) => {
-      return { count: prev.count + 1 };
-    });
+
+  const decrementCount = () => {
+    setCount((prevCount) => (prevCount > 0 ? prevCount - 1 : 0));
   };
-  decreamentCount = () => {
-    if (this.state.count > 0) {
-      this.setState((prev) => {
-        return { count: prev.count - 1 };
-      });
+  const startTimer = () => {
+    if (interval === null) {
+      setCurrInterval(
+        setInterval(() => {
+          setCount((prevCount) => (prevCount > 0 ? prevCount - 1 : 0));
+        }, 1000)
+      );
     }
   };
-  setTimer = () => {
-    if (this.state.count > 0 && !this.intervalId) {
-      this.intervalId = setInterval(() => {
-        this.setState(
-          (prev) => {
-            return { count: prev.count - 1 };
-          },
-          () => {
-            if (this.state.count === 0) {
-              alert("Timer is finished");
-              clearInterval(this.intervalId);
-              this.intervalId = null;
-            }
-          }
-        );
-      }, 1000);
+  const stopTimer = () => {
+    if (interval != null) {
+      clearInterval(interval);
+      setCurrInterval(null);
     }
   };
-  stopTimer = () => {
-    if (this.intervalId) {
-      clearInterval(this.intervalId);
-      this.intervalId = null;
+  const resetTimer = () => {
+    if (interval != null) {
+      clearInterval(interval);
+      setCurrInterval(null);
     }
+    setCount(0);
   };
-  resetTimer = () => {
-    this.setState({ count: 0 });
-    clearInterval(this.intervalId);
-    this.intervalId = null;
-  };
-  render() {
-    return (
-      <div
-        style={{
-          height: "50vh",
-          width: "50vw",
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "space-evenly",
-          alignItems: "center",
-          backgroundColor: "teal",
-          borderRadius: "10px",
-        }}
-      >
-        <h1>Simple Timer</h1>
-        <h1>{this.state.count}</h1>
-        <div>
-          <button onClick={this.incrementCount}>+</button>
-          <button onClick={this.decreamentCount}>-</button>
-        </div>
-        <div>
-          <button onClick={this.setTimer}>Start</button>
-          <button onClick={this.stopTimer}>Stop</button>
-          <button onClick={this.resetTimer}>Reset</button>
-        </div>
+
+  return (
+    <div
+      style={{
+        height: "50vh",
+        width: "50vw",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "space-evenly",
+        alignItems: "center",
+        backgroundColor: "teal",
+        borderRadius: "50px",
+      }}
+    >
+      <h1>Simple Timer</h1>
+      <h1>{count}</h1>
+      <div>
+        <button onClick={incrementCount}>+</button>
+        <button onClick={decrementCount}>-</button>
       </div>
-    );
-  }
+      <div>
+        <button onClick={startTimer}>Start</button>
+        <button onClick={stopTimer}>Stop</button>
+        <button onClick={resetTimer}>Reset</button>
+      </div>
+    </div>
+  );
 }
+
 export default SetState;

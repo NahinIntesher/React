@@ -2,23 +2,38 @@ import React from "react";
 
 class TwoWayDataBinding extends React.Component {
   state = {
-    name: "",
+    title: "",
+    text: "",
   };
 
-  handleInput = (event) => {
-    this.setState({ name: event.target.value });
+  handleChange = (e) => {
+    this.setState({
+      title: e.target.value,
+      text: e.target.value,
+    });
   };
   render() {
     return (
       <div>
         <h1>Two Way Data Binding</h1>
+        <br />
         <input
+          style={{ padding: "10px", fontSize: "25px" }}
           type="text"
-          placeholder="Enter your name"
-          value={this.state.name}
-          onChange={this.handleInput}
+          value={this.state.title}
+          placeholder="Enter name"
+          onChange={this.handleChange}
         />
-        {this.state.name && <h2>Welcome, {this.state.name}</h2>}
+        <br />
+        <br />
+        <textarea
+          style={{ padding: "10px", fontSize: "25px" }}
+          type="text"
+          value={this.state.title}
+          placeholder="Enter Details"
+          onChange={this.handleChange}
+        ></textarea>
+        {this.state.title && <h2>Welcome, {this.state.title}</h2>}
       </div>
     );
   }

@@ -1,7 +1,7 @@
 import React from "react";
 import BoilingVerdict from "./BoilingVerdict";
 import TemparatureInput from "./TemparatureInput";
-import { convert, toCelcious, toFarenheit } from "../../lib/Converter";
+import { convert, toCelcious, toFarenheit } from "./Converter";
 
 export default class Calculate extends React.Component {
   state = {

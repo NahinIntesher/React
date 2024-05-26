@@ -6,5 +6,6 @@ import Clock from "./Components/BasicComponents/Clock";
 import TwoWayDataBinding from "./Components/BasicComponents/InputForm";
 import BoilingVerdict from "./Components/BoilingVerdict/BoilingVerdict";
 import Calculate from "./Components/BoilingVerdict/Calculate";
+import App from "./Components/ReactComposition/App";
 
-ReactDOM.createRoot(document.getElementById("root")).render(<Calculate />);
+ReactDOM.createRoot(document.getElementById("root")).render(<App />);

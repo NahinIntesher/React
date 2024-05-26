@@ -1,52 +1,56 @@
-body{
-    margin: 0;
-    padding: 0;
+body {
+  margin: 0;
+  padding: 0;
 }
-#root{
-    height: 100vh;
-    width: 100vw;
-    background: teal; 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+#root {
+  height: 100vh;
+  width: 100vw;
+  background: teal;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-input{
-    width: 20vmax;
-    font-family: Times New Roman;
-    font-size: 3vmin;
-    padding: 0.4rem;
-
+p,legend {
+  font-family: HeadlandOne;
+  font-size: 2rem;
+  padding: 0.4rem;
+}
+input {
+  width: 20vmax;
+  font-family: Times New Roman;
+  font-size: 3vmin;
+  padding: 0.4rem;
 }
 .nahin td {
-    font-family: Cascadia Code;
-    font-size: 3vmin;
-    padding: 0.4rem;
+  font-family: Cascadia Code;
+  font-size: 3vmin;
+  padding: 0.4rem;
 }
-button{
-    font-family: Times New Roman;
-    font-weight: bold; 
-    font-size: 1.3rem;
-    background: beige;
-    border: 2px solid black;
-    border-radius: 10px;
-    height: 5vmax;
-    width: 10vmax;
-    padding: 1vmax 1vmax;   
-    cursor: pointer;
-    transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+button {
+  font-family: Times New Roman;
+  font-weight: bold;
+  font-size: 1.3rem;
+  background: beige;
+  border: 2px solid black;
+  border-radius: 10px;
+  height: 5vmax;
+  width: 10vmax;
+  padding: 1vmax 1vmax;
+  cursor: pointer;
+  transition: all 300ms cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 button:hover {
-    color: white;
-    background-color: rgb(0, 58, 106);
-    border: 2px solid black;
-    box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
-    transform: translateY(-2px);
-    transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+  color: white;
+  background-color: rgb(0, 58, 106);
+  border: 2px solid black;
+  box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+  transform: translateY(-2px);
+  transition: all 300ms cubic-bezier(0.23, 1, 0.32, 1);
 }
 button:active {
-    box-shadow: none;
-    transform: translateY(0);
+  box-shadow: none;
+  transform: translateY(0);
 }
 
 /*
@@ -74,4 +78,65 @@ button:active {
 .buttons{
     display: flex;
     justify-content: space-around;
-} */
+} 
+.form-container {
+  width: 40vw;
+  margin: auto;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: #f9f9f9;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+.form-input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.form-checkbox,
+.form-submit {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.form-submit {
+  font-family: Times New Roman;
+  font-weight: bold;
+  font-size: 1.3rem;
+  background: beige;
+  border: 2px solid black;
+  border-radius: 10px;
+
+  padding: 1vmax 1vmax;
+  cursor: pointer;
+  transition: all 300ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.form-submit:hover {
+  color: white;
+  background-color: rgb(0, 58, 106);
+  border: 2px solid black;
+  box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+  transform: translateY(-2px);
+  transition: all 300ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.submission-message {
+  margin-top: 20px;
+  padding: 20px;
+  border-top: 1px solid #ccc;
+  background-color: #e9ecef;
+  border-radius: 5px;
+}
+*/

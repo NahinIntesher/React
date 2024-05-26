@@ -1,7 +1,7 @@
 import React from "react";
-import Index from "./Profile/Index.jsx";
-import InputComponent from "./Profile/InputComponent.jsx";
-import Profile from "./Profile/Profile.jsx"; // Assuming you have a Profile component
+import Index from "./Index.jsx";
+import InputComponent from "./InputComponent.jsx";
+import Profile from "./Profile.jsx"; // Assuming you have a Profile component
 
 class App extends React.Component {
   state = {

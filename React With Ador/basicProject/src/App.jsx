@@ -26,9 +26,9 @@ function App() {
       <TwoWayDataBinding />
       <BoilingVerdict />
       <Calculate />
-      <App /> */}
+      <App /> 
       <ClickCounter />
-      <HoverCounter />
+      <HoverCounter />*/}
     </div>
   );
 }

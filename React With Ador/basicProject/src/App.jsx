@@ -7,9 +7,11 @@ import React from "react";
 // import App from "./Components/ReactComposition/App";
 // import ClickCounter from "./Components/HigherOrderComponent/ClickCounter";
 // import HoverCounter from "./Components/HigherOrderComponent/HoverCounter";
-import Counter from "./Components/RenderProps/Counter";
-import ClickCounter from "./Components/RenderProps/ClickCounter";
-import HoverCounter from "./Components/RenderProps/HoverCounter";
+// import Counter from "./Components/RenderProps/Counter";
+// import ClickCounter from "./Components/RenderProps/ClickCounter";
+// import HoverCounter from "./Components/RenderProps/HoverCounter";
+
+
 
 function App() {
   return (
@@ -29,7 +31,7 @@ function App() {
       <Calculate />
       <App /> 
       <ClickCounter />
-      <HoverCounter />*/}
+      <HoverCounter />
 
       <Counter>
         {(count, incrementCount) => (
@@ -40,7 +42,10 @@ function App() {
         {(count, incrementCount) => (
           <HoverCounter count={count} incrementCount={incrementCount} />
         )}
-      </Counter>
+      </Counter>*/}
+
+
+
     </div>
   );
 }

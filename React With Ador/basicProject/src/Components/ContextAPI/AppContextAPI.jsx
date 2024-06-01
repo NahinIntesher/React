@@ -9,15 +9,17 @@ export default class AppContextAPI extends React.Component {
     theme: "dark",
   };
   switchTheme = () => {
-    this.setState(({ theme }) => ({
-      theme: theme === "dark" ? "light" : "dark",
+    this.setState((prevState) => ({
+      theme: prevState.theme === "light" ? "dark" : "light",
     }));
   };
   render() {
     const { theme } = this.state;
     return (
       <div>
-        <ThemeContext.Provider value={{ theme: theme, switchTheme: this.switchTheme }}>
+        <ThemeContext.Provider
+          value={{ theme: theme, switchTheme: this.switchTheme }}
+        >
           <Section />
         </ThemeContext.Provider>
       </div>

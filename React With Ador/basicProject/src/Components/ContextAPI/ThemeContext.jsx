@@ -1,10 +1,10 @@
 import React from "react";
 import CreateContext from "./Context";
 
-// const ThemeContext = React.CreateContext({
+// const ThemeContext = CreateContext({
 //   theme: "light",
 // });
-const ThemeContext = CreateContext({
+const ThemeContext = React.createContext({
   theme: "light",
 });
 

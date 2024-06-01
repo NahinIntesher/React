@@ -8,18 +8,8 @@ export default function HoverCounter({
 }) {
   const style =
     theme === "dark"
-      ? {
-          backgroundColor: "black",
-          color: "white",
-          padding: "10px",
-          margin: "10px",
-        }
-      : {
-          backgroundColor: "lightblue",
-          color: "black",
-          padding: "10px",
-          margin: "10px",
-        };
+      ? { backgroundColor: "black", color: "white" }
+      : { backgroundColor: "lightblue", color: "black" };
   return (
     <div
       style={{
@@ -29,7 +19,7 @@ export default function HoverCounter({
         alignItems: "center",
       }}
     >
-      <h1 style={style} onMouseOver={incrementCount}>
+      <h1 style={{ ...style, padding: "10px" }} onMouseOver={incrementCount}>
         Hovered {count} times
       </h1>
       <button onClick={switchTheme}>Change Theme</button>

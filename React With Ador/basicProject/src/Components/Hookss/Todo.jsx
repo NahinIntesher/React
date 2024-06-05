@@ -15,7 +15,7 @@ function Todo() {
 
   return (
     <div>
-      <p>Todo</p>
+      <h1>Todo</h1>
       <p>
         <textarea name="todo" value={todo} onChange={handleInput} />
       </p>

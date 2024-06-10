@@ -1,7 +1,11 @@
+import React from 'react';
+import Header from './Components/Header/Header';
+import Footer from './Components/Footer/Footer';
+
 function App() {
   return (
     <>
-      <h1>Hello World</h1>
+      <Header />
     </>
   );
 }

@@ -1,0 +1,5 @@
+.bg-forest {
+  background-image: url('./assets/forest.jpg');
+  background-size: cover;
+  background-position: center;
+}

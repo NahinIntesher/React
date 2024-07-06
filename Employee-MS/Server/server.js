@@ -1,17 +1,16 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-const connection = require("./connection");
+const connection = require("./utils/connection");
 const path = require("path");
-
+const cors = require("cors");
+const { router: adminRouter } = require("./Routes/AdminRoute");
 const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cors());  
+app.use(express.json());
+app.use("/auth", adminRouter);
 
-// Set up ejs as the templating engine
-app.set("view engine", "ejs");
-app.set("views", path.join(__dirname, "views"));
-
-// Connect to the database
 connection.connect((error) => {
   if (error) {
     console.error("Database connection failed: " + error.stack);
@@ -66,5 +65,32 @@ app.get("/employee", (req, res) => {
   });
 });
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // Start the server
-app.listen(3001);
+app.listen(3000);

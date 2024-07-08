@@ -1,8 +1,7 @@
-const express = require("express");                     
+const express = require("express");
 const router = express.Router();
+const connection = require("../utils/connection");
+const jwt = require("jsonwebtoken");
 
-router.post("/adminLogin", (req, res) => {
-  console.log(req.body);                                                                         
-});
 
-module.exports =  {router};                                                    
+module.exports = router;

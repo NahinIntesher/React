@@ -3,13 +3,21 @@ const bodyParser = require("body-parser");
 const connection = require("./utils/connection");
 const path = require("path");
 const cors = require("cors");
-const { router: adminRouter } = require("./Routes/AdminRoute");
+const jwt = require("jsonwebtoken"); // Import JWT library
+
 const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(cors());  
+
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true,
+  })
+);
+
 app.use(express.json());
-app.use("/auth", adminRouter);
 
 connection.connect((error) => {
   if (error) {
@@ -19,78 +27,71 @@ connection.connect((error) => {
   console.log("Connected to database.");
 });
 
-// Add a new employee
-app.post("/add-employee", (req, res) => {
-  const { name, joining_date, agreementTill, email, salary, phone_number } =
-    req.body;
-  const sql =
-    "INSERT INTO employee (name, joining_date, agreementTill, email, salary, phone_number) VALUES (?, ?, ?, ?, ?, ?)";
+// Middleware to verify JWT token
+app.post("/adminLogin", (req, res) => {
+  const { email, password } = req.body;
+
   connection.query(
-    sql,
-    [name, joining_date, agreementTill, email, salary, phone_number],
-    (err, result) => {
+    "SELECT * FROM students WHERE email = ?",
+    [email],
+    (err, results) => {
       if (err) {
-        console.error(err);
-        res.status(500).send("Server error");
-        return;
+        console.error("Database query error:", err);
+        return res
+          .status(500)
+          .send("An error occurred while retrieving user data");
       }
-      res.redirect("/employee");
+
+      if (results.length === 0) {
+        return res.status(401).send("Invalid credentials");
+      }
+
+      const storedPassword = results[0].password;
+      const uid = results[0].id;
+
+      if (storedPassword !== password) {
+        return res.status(401).send("Invalid email or password");
+      }
+
+      let token = jwt.sign({ id: uid }, "1234", { expiresIn: "10d" });
+      let cookieOptions = {
+        expires: new Date(Date.now() + 10 * 24 * 60 * 60 * 1000),
+        httpOnly: true,
+      };
+      res.cookie("userRegistered", token, cookieOptions);
+      res.json({ result: results[0] });
     }
   );
 });
 
-// Delete an employee
-app.post("/delete-employee", (req, res) => {
-  const id = req.body.employeeId;
-  const sql = "DELETE FROM employee WHERE id = ?";
-  connection.query(sql, [id], (err, result) => {
-    if (err) {
-      console.error(err);
-      res.status(500).send("Server error");
-      return;
-    }
-    res.redirect("/employee");
-  });
+// Logout route
+app.get("/logout", (req, res) => {
+  res.clearCookie("userRegistered");
+  res.json({ Status: true });
 });
 
-// Fetch all employees
-app.get("/employee", (req, res) => {
-  connection.query("SELECT * FROM employee", (err, result) => {
-    if (err) {
-      console.error(err);
-      res.status(500).send("Server error");
-      return;
-    }
-    res.json(result);
-  });
+// Check if user is authenticated
+app.get("/isAuthenticated", verifyToken, (req, res) => {
+  res.json({ isloggedIn: true, id: req.user.id });
 });
 
+// Middleware to verify JWT token
+function verifyToken(req, res, next) {
+  const token = req.cookies.userRegistered;
 
+  if (!token) {
+    return res.status(401).json({ message: "Unauthorized" });
+  }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  try {
+    const decoded = jwt.verify(token, "1234");
+    req.user = decoded;
+    next();
+  } catch (err) {
+    console.error("JWT verification error:", err);
+    return res.status(401).json({ message: "Unauthorized" });
+  }
+}
 
 // Start the server
 app.listen(3000);

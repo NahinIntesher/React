@@ -1,17 +1,60 @@
 import React from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./Components/Login";
-import "./App.css"; // Create this file for additional custom styles
+import DashBoard from "./Components/DashBoard";
+import Home from "./Components/Home";
+import Catagory from "./Components/Catagory";
+import Profile from "./Components/Profile";
+import ProtectedRoute from "./ProtectedRoute";
+import "./App.css";
 
 function App() {
   return (
-    <div className="bg-forest min-h-screen flex items-center  justify-center">
-      <div className="p-8 rounded-lg shadow-lg text-white text-center bg-teal-900 border-2 border-white backdrop-blur-sm">
-        <h1 className="text-3xl font-bold mb-6 text-white">
-          Employee Management System
-        </h1>
-        <Login />
-      </div>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Login />} />
+        <Route
+          path="/dashboard"
+          element={
+            <ProtectedRoute>
+              <DashBoard />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/home"
+          element={
+            <ProtectedRoute>
+              <Home />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/dashboard/employee"
+          element={
+            <ProtectedRoute>
+              <Catagory />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/dashboard/catagory"
+          element={
+            <ProtectedRoute>
+              <Catagory />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/dashboard/profile"
+          element={
+            <ProtectedRoute>
+              <Profile />
+            </ProtectedRoute>
+          }
+        />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

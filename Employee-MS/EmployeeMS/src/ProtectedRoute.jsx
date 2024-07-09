@@ -7,15 +7,26 @@ const ProtectedRoute = ({ children }) => {
   const navigate = useNavigate();
 
   // Check authentication status
-  axios.get("http://localhost:3000/isAuthenticated").then((result) => {
+  fetch('http://localhost:3000/isAuthenticated', {
+    method: 'GET',
+    credentials: 'include', // Ensure credentials are included
+  }).then(async (res) => {
+  
     const { isloggedIn } = result.data;
 
-    if (!isloggedIn) {
-      navigate("/"); // Redirect to login if not logged in
+    if(isloggedIn){
+      console.log("User is authenticated");
     }
+    else{
+      console.log("User is not authenticated");
+    }
+    // console.log(isloggedIn);
+    // if (!isloggedIn) {
+    //   navigate("/");
+    // }
   });
 
-  return <>{children}</>;
+  // return <>{children}</>;
 };
 
 export default ProtectedRoute;

@@ -1,14 +1,14 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const connection = require("./utils/connection");
-const path = require("path");
 const cors = require("cors");
-const jwt = require("jsonwebtoken"); // Import JWT library
+const jwt = require("jsonwebtoken");
+const cookieParser = require("cookie-parser");
 
 const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-
+app.use(cookieParser()); // Use cookie-parser middleware to parse cookies
 app.use(
   cors({
     origin: "http://localhost:5173",
@@ -16,8 +16,6 @@ app.use(
     credentials: true,
   })
 );
-
-app.use(express.json());
 
 connection.connect((error) => {
   if (error) {
@@ -28,11 +26,29 @@ connection.connect((error) => {
 });
 
 // Middleware to verify JWT token
+function verifyToken(req, res, next) {
+  const token = req.cookies.userRegistered;
+
+  if (!token) {
+    return res.status(401).json({ message: "Unauthorized No Token" });
+  }
+
+  try {
+    const decoded = jwt.verify(token, "1234");
+    req.user = decoded; // Store decoded user information in request object
+    next(); // Proceed to the next middleware or route handler
+  } catch (err) {
+    console.error("JWT verification error:", err);
+    return res.status(401).json({ message: "Unauthorized Error" });
+  }
+}
+
+// Route to handle admin login
 app.post("/adminLogin", (req, res) => {
   const { email, password } = req.body;
 
   connection.query(
-    "SELECT * FROM students WHERE email = ?",
+    "SELECT * FROM admin WHERE email = ?",
     [email],
     (err, results) => {
       if (err) {
@@ -43,55 +59,42 @@ app.post("/adminLogin", (req, res) => {
       }
 
       if (results.length === 0) {
-        return res.status(401).send("Invalid credentials");
+        return res.status(401).json({
+          loginStatus: false,
+          error: "Wrong email or password",
+        });
       }
 
       const storedPassword = results[0].password;
       const uid = results[0].id;
 
       if (storedPassword !== password) {
-        return res.status(401).send("Invalid email or password");
+        return res
+          .status(401)
+          .json({ loginStatus: false, error: "Invalid email or password" });
       }
 
-      let token = jwt.sign({ id: uid }, "1234", { expiresIn: "10d" });
+      const token = jwt.sign({ id: uid }, "1234", { expiresIn: "10d" });
       let cookieOptions = {
         expires: new Date(Date.now() + 10 * 24 * 60 * 60 * 1000),
         httpOnly: true,
       };
       res.cookie("userRegistered", token, cookieOptions);
-      res.json({ result: results[0] });
+      return res.json({ loginStatus: true });
     }
   );
 });
 
-// Logout route
+// Route to handle logout
 app.get("/logout", (req, res) => {
   res.clearCookie("userRegistered");
-  res.json({ Status: true });
+  res.json({ status: true });
 });
 
-// Check if user is authenticated
+// Route to check if user is authenticated
 app.get("/isAuthenticated", verifyToken, (req, res) => {
-  res.json({ isloggedIn: true, id: req.user.id });
+  res.json({ isAuthenticated: true, id: req.user.id });
 });
-
-// Middleware to verify JWT token
-function verifyToken(req, res, next) {
-  const token = req.cookies.userRegistered;
-
-  if (!token) {
-    return res.status(401).json({ message: "Unauthorized" });
-  }
-
-  try {
-    const decoded = jwt.verify(token, "1234");
-    req.user = decoded;
-    next();
-  } catch (err) {
-    console.error("JWT verification error:", err);
-    return res.status(401).json({ message: "Unauthorized" });
-  }
-}
 
 // Start the server
 app.listen(3000);

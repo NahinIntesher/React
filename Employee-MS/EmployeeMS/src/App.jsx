@@ -9,48 +9,50 @@ import ProtectedRoute from "./ProtectedRoute";
 import "./App.css";
 
 function App() {
+  // ProtectedRoute();
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Login />} />
+        <Route path="/login" element={<Login />} />
         <Route
           path="/dashboard"
           element={
-            <ProtectedRoute>
+            // <ProtectedRoute>
               <DashBoard />
-            </ProtectedRoute>
+            // </ProtectedRoute>
           }
         />
         <Route
           path="/home"
           element={
-            <ProtectedRoute>
+            // <ProtectedRoute>
               <Home />
-            </ProtectedRoute>
+            // </ProtectedRoute>
           }
         />
         <Route
           path="/dashboard/employee"
           element={
-            <ProtectedRoute>
+            // <ProtectedRoute>
               <Catagory />
-            </ProtectedRoute>
+            // </ProtectedRoute>
           }
         />
         <Route
           path="/dashboard/catagory"
           element={
-            <ProtectedRoute>
+            // <ProtectedRoute>
               <Catagory />
-            </ProtectedRoute>
+            // </ProtectedRoute>
           }
         />
         <Route
           path="/dashboard/profile"
           element={
-            <ProtectedRoute>
+            // <ProtectedRoute>
               <Profile />
-            </ProtectedRoute>
+            // </ProtectedRoute>
           }
         />
       </Routes>

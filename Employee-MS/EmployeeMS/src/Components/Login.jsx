@@ -20,8 +20,8 @@ export default function Login() {
     axios
       .post("http://localhost:3000/adminLogin", info)
       .then((res) => {
-        console.log(res.data);
-        if (res.data.loginStatus === true) {
+        const { loginStatus } = res.data;
+        if (loginStatus) {
           navigate("/dashboard");
         } else {
           alert("Invalid email or password");
